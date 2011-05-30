@@ -25,7 +25,7 @@ Which may seem like a waste of keystrokes but generally makes the tests a lot mo
     yaml_test ObjectToTest, 'path_to_yaml_file.yml'
   end
 
-See {tests/test_yaml_test.rb} for a working example of how to do this.
+See tests/test_yaml_test.rb for a working example of how to do this.
 
 == Contributing to yaml_test
  
