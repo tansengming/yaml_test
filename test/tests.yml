@@ -1,0 +1,14 @@
+-
+  text: 'test string'
+  method: to_s
+  expected: 'test string'
+-
+  text: 'this should be ignored or else it will fail'
+  method: to_s
+  expected: 'test string'
+  ignore: true
+-
+  text: 'this should be ignored or else it will fail'
+  method: to_s
+  expected: 'test string'
+  assertion: assert_not_equal

@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "yaml_test"
   gem.homepage = "http://github.com/tansengming/yaml_test"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Creates unit tests out of YAML files}
+  gem.description = %Q{Creates unit tests out of YAML files}
   gem.email = "tansengming@gmail.com"
   gem.authors = ["SengMing Tan"]
   # dependencies defined in Gemfile
