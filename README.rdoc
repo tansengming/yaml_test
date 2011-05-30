@@ -1,6 +1,37 @@
 = yaml_test
 
-Description goes here.
+I build this to make it easier to build unit tests for text processing objects. I.e. instead of typing
+
+<pre>
+# assuming PhoneParser#parse exists.
+assert_equal '515-222-1234', PhoneParser.new('You can call me at 515-222-1234').parse
+assert_not_equal '515', PhoneParser.new('I live in room 515 but you can call me at 515-222-1234').parse
+</pre>
+
+You'd write a YAML file:
+<pre>
+-
+  text: > You can call me at 515-222-1234
+  expected: > 515-222-1234
+  method: parse
+-
+  text: > I live in room 515 but you can call me at 515-222-1234
+  expected: > 515
+  method: parse
+  assertion: assert_not_equal
+</pre>
+
+Which might seem like a waste of keystrokes but generally makes the tests a lot more readable. To include it in your unit tests just include the module and pass in the class you are testing together with the YAML path. Like so:
+
+<pre>
+class TestYamlTest < Test::Unit::TestCase
+  include YAMLTest
+  
+  yaml_test ObjectToTest, 'path_to_yaml_file.yml'
+end
+</pre>
+
+See `tests/test_yaml_test.rb` for a working example of how to do this.
 
 == Contributing to yaml_test
  
