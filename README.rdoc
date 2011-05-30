@@ -2,34 +2,28 @@
 
 I build this to make it easier to build unit tests for text processing objects. I.e. instead of typing
 
-=begin ruby
-# assuming PhoneParser#parse exists.
-assert_equal '515-222-1234', PhoneParser.new('You can call me at 515-222-1234').parse
-assert_not_equal '515', PhoneParser.new('I live in room 515 but you can call me at 515-222-1234').parse
-=end
+  # assuming PhoneParser#parse exists.
+  assert_equal '515-222-1234', PhoneParser.new('You can call me at 515-222-1234').parse
+  assert_not_equal '515', PhoneParser.new('I live in room 515 but you can call me at 515-222-1234').parse
 
 You'd write a YAML file:
-=begin yaml
--
-  text: > You can call me at 515-222-1234
-  expected: > 515-222-1234
-  method: parse
--
-  text: > I live in room 515 but you can call me at 515-222-1234
-  expected: > 515
-  method: parse
-  assertion: assert_not_equal
-= end
+  -
+    text: > You can call me at 515-222-1234
+    expected: > 515-222-1234
+    method: parse
+  -
+    text: > I live in room 515 but you can call me at 515-222-1234
+    expected: > 515
+    method: parse
+    assertion: assert_not_equal
 
 Which may seem like a waste of keystrokes but generally makes the tests a lot more readable. To include it in your unit tests just include the module and pass in the class you are testing together with the YAML path. Like so:
 
-=begin ruby
-class TestYamlTest < Test::Unit::TestCase
-  include YAMLTest
+  class TestYamlTest < Test::Unit::TestCase
+    include YAMLTest
   
-  yaml_test ObjectToTest, 'path_to_yaml_file.yml'
-end
-=end
+    yaml_test ObjectToTest, 'path_to_yaml_file.yml'
+  end
 
 See {tests/test_yaml_test.rb} for a working example of how to do this.
 
